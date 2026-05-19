@@ -11,8 +11,8 @@ public class HomeController : Controller
     {
         var meuslivros = new List<Livro>();
         {
-            new Livro { Id = 1, Titulo "Heroi das mil faces", Autor = "Joseph Campebell" }
-        new Livro { Id = 2, Titulo "O codigo da vinci", Autor = "Dan Brown" }
+            new Livro { Id = 1, Titulo "A Arte da Guerra", Autor = "A Arte da Guerra" }
+             new Livro { Id = 2, Titulo "Guerra e ", Autor = "Liev Tolstói" }
         }
         ;
         return View();

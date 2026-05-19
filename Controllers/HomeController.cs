@@ -15,7 +15,7 @@ public class HomeController : Controller
              new Livro { Id = 2, Titulo "Guerra e Paz", Autor = "Liev Tolstói" }
         }
         ;
-        return View();
+        return View(meuslivros);
     }
 
     public IActionResult Privacy()

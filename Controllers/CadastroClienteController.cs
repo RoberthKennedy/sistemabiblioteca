@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using biblioteca.Models;
 using Microsoft.AspNetCore.Mvc;
 using sistemabiblioteca.Models;
 
@@ -16,12 +15,11 @@ public class CadastroClienteController : Controller
 
     public IActionResult Cadastrar(Cliente novoCliente)
     {
-        novocliente.Id = clientes.Count + 1;
-        clientes.Add(novocliente);
+        novoCliente.Id = clientes.Count + 1;
+        clientes.Add(novoCliente);
 
         return RedirectToAction("Index");
     }
 
 
 }
-

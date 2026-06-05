@@ -1,18 +1,29 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using sistemabiblioteca.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace sistemabiblioteca.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+    public IActionResult Index(string busca)
     {
         var meuslivros = new List<Livro>
         {
             new Livro { Id = 1, Titulo = "A Arte da Guerra", Autor = "Sun Tzu" },
             new Livro { Id = 2, Titulo = "Guerra e Paz", Autor = "Liev Tolstói" }
         };
+
+        if (!string.IsNullOrEmpty(busca))
+        {
+            meuslivros = meuslivros
+                .Where(l => l.Titulo.Contains(busca, System.StringComparison.OrdinalIgnoreCase) ||
+                            l.Autor.Contains(busca, System.StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+
         return View(meuslivros);
     }
 

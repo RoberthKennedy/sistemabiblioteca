@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using sistemabiblioteca.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace sistemabiblioteca.Controllers;
 
@@ -22,6 +25,9 @@ public class AdminController : Controller
     [HttpPost]
     public IActionResult Criar(Produto p)
     {
+        if (!ModelState.IsValid)
+            return View(p);
+
         p.Id = _produtos.Count + 1;
         _produtos.Add(p);
         return RedirectToAction("Index");
@@ -36,6 +42,9 @@ public class AdminController : Controller
     [HttpPost]
     public IActionResult Editar(Produto p)
     {
+        if (!ModelState.IsValid)
+            return View(p);
+
         var index = _produtos.FindIndex(x => x.Id == p.Id);
         if (index != -1) _produtos[index] = p;
         return RedirectToAction("Index");

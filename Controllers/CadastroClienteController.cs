@@ -1,25 +1,33 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using sistemabiblioteca.Models;
+using System.Collections.Generic;
 
-namespace sistemabiblioteca.Controllers;
-
-public class CadastroClienteController : Controller
+namespace sistemabiblioteca.Controllers
 {
-    private static List<Cliente> clientes = new List<Cliente>();
-
-    public IActionResult Index()
+    public class CadastroClienteController : Controller
     {
-        return View();
+        private static List<Cliente> clientes = new List<Cliente>();
+
+        public IActionResult Index()
+        {
+            return View(clientes);
+        }
+
+        public IActionResult Cadastrar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Cadastrar(Cliente cliente)
+        {
+            if (!ModelState.IsValid)
+                return View(cliente);
+
+            cliente.Id = clientes.Count + 1;
+            clientes.Add(cliente);
+
+            return RedirectToAction("Index");
+        }
     }
-
-    public IActionResult Cadastrar(Cliente novoCliente)
-    {
-        novoCliente.Id = clientes.Count + 1;
-        clientes.Add(novoCliente);
-
-        return RedirectToAction("Index");
-    }
-
-
 }

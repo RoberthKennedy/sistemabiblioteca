@@ -1,20 +1,20 @@
-﻿@model List<sistemabiblioteca.Models.Produto>
+﻿@model List<sistemabiblioteca.Models.Livro>
 @{
-    ViewData["Title"] = "Gerenciar Produtos";
+    ViewData["Title"] = "Gerenciar Livros";
     Layout = "_Layout";
 }
 
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Painel Administrativo - Produtos</h2>
-        <a asp-action="Criar" class="btn btn-success">+ Novo Produto</a>
+        <h2>Painel Administrativo - Livros</h2>
+        <a asp-action="Criar" class="btn btn-success">+ Novo Livro</a>
     </div>
 
     <div class="card shadow-sm mb-4">
         <div class="card-body">
             <form asp-action="Index" method="get" class="row g-3">
                 <div class="col-md-10">
-                    <input type="text" name="busca" class="form-control" placeholder="Pesquisar por nome...">
+                    <input type="text" name="busca" class="form-control" placeholder="Pesquisar por título ou autor...">
                 </div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary w-100">Pesquisar</button>
@@ -26,9 +26,8 @@
     <table class="table table-hover shadow-sm bg-white rounded">
         <thead class="table-dark">
             <tr>
-                <th>Nome</th>
-                <th>Categoria</th>
-                <th>Preço</th>
+                <th>Título</th>
+                <th>Autor</th>
                 <th class="text-center">Ações</th>
             </tr>
         </thead>
@@ -36,9 +35,8 @@
             @foreach (var p in Model)
             {
                 <tr>
-                    <td>@p.Nome</td>
-                    <td><span class="badge bg-info">@p.Categoria</span></td>
-                    <td>@p.Preco.ToString("C")</td>
+                    <td>@p.Titulo</td>
+                    <td>@p.Autor</td>
                     <td class="text-center">
                         <a asp-action="Editar" asp-route-id="@p.Id" class="btn btn-sm btn-warning">Editar</a>
                         <a asp-action="Excluir" asp-route-id="@p.Id" class="btn btn-sm btn-danger" onclick="return confirm('Excluir este item?')">Excluir</a>

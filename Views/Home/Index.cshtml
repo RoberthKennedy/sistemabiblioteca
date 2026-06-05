@@ -1,20 +1,22 @@
 ﻿@model List<sistemabiblioteca.Models.Livro>
 @{
-    ViewData["Title"] = "Gerenciar Livros";
+    ViewData["Title"] = "Página Inicial";
     Layout = "_Layout";
 }
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Painel Administrativo - Livros</h2>
-        <a asp-action="Criar" class="btn btn-success">+ Novo Livro</a>
+<div class="p-5 mb-4 bg-light rounded-3 shadow-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+    <div class="container-fluid py-5 text-center">
+        <h1 class="display-4 fw-bold">Inovação e Conhecimento</h1>
+        <p class="col-md-12 fs-4">Explore nosso acervo e descubra histórias incríveis.</p>
     </div>
+</div>
 
+<div class="container mt-4">
     <div class="card shadow-sm mb-4">
         <div class="card-body">
             <form asp-action="Index" method="get" class="row g-3">
                 <div class="col-md-10">
-                    <input type="text" name="busca" class="form-control" placeholder="Pesquisar por título ou autor...">
+                    <input type="text" name="busca" class="form-control" placeholder="Pesquisar livros por título ou autor...">
                 </div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary w-100">Pesquisar</button>
@@ -23,26 +25,24 @@
         </div>
     </div>
 
-    <table class="table table-hover shadow-sm bg-white rounded">
-        <thead class="table-dark">
-            <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th class="text-center">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var p in Model)
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var livro in Model)
             {
-                <tr>
-                    <td>@p.Titulo</td>
-                    <td>@p.Autor</td>
-                    <td class="text-center">
-                        <a asp-action="Editar" asp-route-id="@p.Id" class="btn btn-sm btn-warning">Editar</a>
-                        <a asp-action="Excluir" asp-route-id="@p.Id" class="btn btn-sm btn-danger" onclick="return confirm('Excluir este item?')">Excluir</a>
-                    </td>
-                </tr>
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">@livro.Titulo</h5>
+                            <p class="card-text text-muted">Autor: @livro.Autor</p>
+                        </div>
+                    </div>
+                </div>
             }
-        </tbody>
-    </table>
+        }
+        else
+        {
+            <p class="text-center w-100">Nenhum livro encontrado no momento.</p>
+        }
+    </div>
 </div>

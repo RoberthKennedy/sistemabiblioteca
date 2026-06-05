@@ -37,9 +37,16 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Produtos()
+    public IActionResult Produtos(string busca)
     {
-        return View();
+        // Agora a vitrine exibe a lista centralizada que vem do Admin
+        var listaParaVenda = AdminController._produtos;
+
+        if (!string.IsNullOrEmpty(busca))
+        {
+            listaParaVenda = listaParaVenda.Where(p => p.Nome.Contains(busca, StringComparison.OrdinalIgnoreCase) || p.Descricao.Contains(busca, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+        return View(listaParaVenda);
     }
 
     public IActionResult Contato()

@@ -47,6 +47,18 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpPost]
+    public IActionResult Contato(ContatoViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            // Simulação de envio de mensagem
+            TempData["MensagemSucesso"] = "Obrigado! Sua mensagem foi enviada com sucesso e em breve entraremos em contato.";
+            return RedirectToAction("Contato");
+        }
+        return View(model);
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

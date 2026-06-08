@@ -39,7 +39,7 @@ public class HomeController : Controller
 
     public IActionResult Produtos(string busca)
     {
-        // Agora a vitrine exibe a lista centralizada que vem do Admin
+
         var listaParaVenda = AdminController._produtos;
 
         if (!string.IsNullOrEmpty(busca))
@@ -59,7 +59,7 @@ public class HomeController : Controller
     {
         if (ModelState.IsValid)
         {
-            // Simulação de envio de mensagem
+
             TempData["MensagemSucesso"] = "Obrigado! Sua mensagem foi enviada com sucesso e em breve entraremos em contato.";
             return RedirectToAction("Contato");
         }

@@ -8,7 +8,7 @@ namespace sistemabiblioteca.Controllers;
 
 public class AdminController : Controller
 {
-    // Alterado para public static para que a vitrine (Home) possa ler os dados cadastrados aqui
+
     public static List<Produto> _produtos = new List<Produto>
     {
         new Produto { Id = 1, Nome = "Dom Casmurro", Descricao = "Obra prima de Machado de Assis.", Preco = 35.00m, Categoria = "Livro" },

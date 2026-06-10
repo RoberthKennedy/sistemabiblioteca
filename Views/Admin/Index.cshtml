@@ -1,45 +1,105 @@
 @model List<sistemabiblioteca.Models.Produto>
 
-<h1>Lista de Produtos</h1>
+<div class="container mt-5">
 
-<a asp-action="Criar">Novo Produto</a>
+    <div class="hero-section library-shadow">
+        <h1>Biblioteca Universitária</h1>
+        <p>Gerenciamento inteligente de livros e acervo acadêmico</p>
+    </div>
 
-<form method="get">
-    <input type="text" name="busca" placeholder="Buscar produto..." />
-    <button type="submit">Buscar</button>
-</form>
+    <div class="admin-container">
 
-<table border="1" cellpadding="10">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Categoria</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
+        <div class="d-flex justify-content-between align-items-center mb-4">
 
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Nome</td>
-                <td>@item.Descricao</td>
-                <td>@item.Preco</td>
-                <td>@item.Categoria</td>
+            <h2 class="admin-title">📚 Lista de Livros</h2>
 
-                <td>
-                    <a asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+            <a asp-action="Criar" class="btn btn-success">
+                + Novo Livro
+            </a>
 
-                    <a asp-action="Excluir"
-                       asp-route-id="@item.Id">
-                       Excluir
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+        </div>
+
+        <form method="get" class="mb-4">
+
+            <div class="input-group">
+
+                <input type="text"
+                       name="busca"
+                       class="form-control"
+                       placeholder="Buscar livro..." />
+
+                <button type="submit" class="btn btn-primary">
+                    Buscar
+                </button>
+
+            </div>
+
+        </form>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Livro</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                        <th>Categoria</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.Id</td>
+
+                            <td>
+                                <strong>@item.Nome</strong>
+                            </td>
+
+                            <td>@item.Descricao</td>
+
+                            <td>
+                                R$ @item.Preco
+                            </td>
+
+                            <td>
+                                <span class="badge badge-info">
+                                    @item.Categoria
+                                </span>
+                            </td>
+
+                            <td class="text-center">
+
+                                <a asp-action="Editar"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-warning btn-sm">
+                                    Editar
+                                </a>
+
+                                <a asp-action="Excluir"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-danger btn-sm">
+                                    Excluir
+                                </a>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

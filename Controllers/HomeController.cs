@@ -13,7 +13,21 @@ public class HomeController : Controller
         var meuslivros = new List<Livro>
         {
             new Livro { Id = 1, Titulo = "A Arte da Guerra", Autor = "Sun Tzu" },
-            new Livro { Id = 2, Titulo = "Guerra e Paz", Autor = "Liev Tolstói" }
+            new Livro { Id = 2, Titulo = "Guerra e Paz", Autor = "Liev Tolstói" },
+            new Livro { Id = 3, Titulo = "Nada de Novo no Front", Autor = "Erich Maria Remarque" },
+            new Livro { Id = 4, Titulo = "Stalingrado", Autor = "Antony Beevor" },
+            new Livro { Id = 5, Titulo = "A Segunda Guerra Mundial", Autor = "Winston Churchill" },
+            new Livro { Id = 6, Titulo = "Tempestade de Aço", Autor = "Ernst Jünger" },
+            new Livro { Id = 7, Titulo = "Band of Brothers", Autor = "Stephen E. Ambrose" },
+            new Livro { Id = 8, Titulo = "A Guerra Não Tem Rosto de Mulher", Autor = "Svetlana Alexievich" },
+            new Livro { Id = 9, Titulo = "O Diário de Anne Frank", Autor = "Anne Frank" },
+            new Livro { Id = 10, Titulo = "Pearl Harbor", Autor = "Craig Nelson" },
+            new Livro { Id = 11, Titulo = "A Queda de Berlim 1945", Autor = "Antony Beevor" },
+            new Livro { Id = 11, Titulo = "Sobre a Guerra", Autor = "Carl von Clausewitz" },
+            new Livro { Id = 12, Titulo = "Os Canhões de Agosto", Autor = "Barbara W. Tuchman" },
+            new Livro { Id = 13, Titulo = "O Longo Caminho para Casa", Autor = "Ernest Hemingway" },
+            new Livro { Id = 14, Titulo = "A Grande Guerra", Autor = "Marc Ferro" },
+            new Livro { Id = 15, Titulo = "A Guerra do Peloponeso", Autor = "Tucídides" },
         };
 
         if (!string.IsNullOrEmpty(busca))

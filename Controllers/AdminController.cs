@@ -14,7 +14,6 @@ public class AdminController : Controller
         new Produto { Id = 1, Nome = "Dom Casmurro", Descricao = "Obra prima de Machado de Assis.", Preco = 35.00m, Categoria = "Livro" },
         new Produto { Id = 2, Nome = "O Alquimista", Descricao = "Fábula mística de Paulo Coelho.", Preco = 42.90m, Categoria = "Livro" },
         new Produto { Id = 3, Nome = "A Revolução dos Bichos", Descricao = "Clássico de George Orwell sobre política e sociedade.", Preco = 29.90m, Categoria = "Livro" },
-        new Produto { Id = 3, Nome = "A Revolução dos Bichos", Descricao = "Clássico de George Orwell sobre política e sociedade.", Preco = 29.90m, Categoria = "Livro" },
         new Produto { Id = 4, Nome = "1984", Descricao = "Distopia de George Orwell sobre vigilância e controle.", Preco = 39.90m, Categoria = "Livro" },
         new Produto { Id = 5, Nome = "O Pequeno Príncipe", Descricao = "Obra de Antoine de Saint-Exupéry sobre amizade e valores.", Preco = 24.90m, Categoria = "Livro" },
         new Produto { Id = 6, Nome = "Capitães da Areia", Descricao = "Romance de Jorge Amado sobre jovens em situação de rua.", Preco = 34.90m, Categoria = "Livro" },

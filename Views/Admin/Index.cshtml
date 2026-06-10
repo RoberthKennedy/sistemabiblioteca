@@ -1,0 +1,45 @@
+@model List<sistemabiblioteca.Models.Produto>
+
+<h1>Lista de Produtos</h1>
+
+<a asp-action="Criar">Novo Produto</a>
+
+<form method="get">
+    <input type="text" name="busca" placeholder="Buscar produto..." />
+    <button type="submit">Buscar</button>
+</form>
+
+<table border="1" cellpadding="10">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Nome</td>
+                <td>@item.Descricao</td>
+                <td>@item.Preco</td>
+                <td>@item.Categoria</td>
+
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+
+                    <a asp-action="Excluir"
+                       asp-route-id="@item.Id">
+                       Excluir
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

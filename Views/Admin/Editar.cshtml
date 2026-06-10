@@ -1,0 +1,31 @@
+@model sistemabiblioteca.Models.Produto
+
+<h1>Editar Produto</h1>
+
+<form asp-action="Editar" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div>
+        <label>Nome</label>
+        <input asp-for="Nome" />
+    </div>
+
+    <div>
+        <label>Descrição</label>
+        <input asp-for="Descricao" />
+    </div>
+
+    <div>
+        <label>Preço</label>
+        <input asp-for="Preco" />
+    </div>
+
+    <div>
+        <label>Categoria</label>
+        <input asp-for="Categoria" />
+    </div>
+
+    <button type="submit">Salvar</button>
+
+</form>

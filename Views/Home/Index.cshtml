@@ -4,45 +4,289 @@
     Layout = "_Layout";
 }
 
-<div class="p-5 mb-4 bg-light rounded-3 shadow-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-    <div class="container-fluid py-5 text-center">
-        <h1 class="display-4 fw-bold">A leitura te leva a lugares onde seus pés nunca chegaram</h1>
-        <p class="col-md-12 fs-4">Explore nosso Sistema de biblioteca e descubra histórias incríveis.</p>
+<section class="hero">
+    <div class="hero-texture"></div>
+    <div class="hero-content">
+        <p class="hero-label">✦ Biblioteca Digital</p>
+        <h1 class="hero-title">A leitura te leva a lugares onde seus pés nunca chegaram</h1>
+        <p class="hero-desc">Explore nosso acervo e descubra histórias incríveis</p>
+        <form asp-action="Index" method="get" class="hero-search">
+            <input type="text" name="busca" placeholder="Título, autor ou tema..." class="hero-input" />
+            <button type="submit" class="hero-btn">Buscar →</button>
+        </form>
     </div>
-</div>
+</section>
 
-<div class="container mt-4">
-    <div class="card shadow-sm mb-4">
-        <div class="card-body">
-            <form asp-action="Index" method="get" class="row g-3">
-                <div class="col-md-10">
-                    <input type="text" name="busca" class="form-control" placeholder="Pesquisar livros por título ou autor...">
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary w-100">Pesquisar</button>
-                </div>
-            </form>
-        </div>
+<main class="catalog">
+    <div class="catalog-header">
+        <h2 class="catalog-title">Catálogo</h2>
+        <span class="catalog-count">@(Model?.Count ?? 0) títulos disponíveis</span>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="catalog-grid">
         @if (Model != null && Model.Any())
         {
             @foreach (var livro in Model)
             {
-                <div class="col">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title text-primary">@livro.Titulo</h5>
-                            <p class="card-text text-muted">Autor: @livro.Autor</p>
+                <article class="livro">
+                    <div class="livro-spine"></div>
+                    <div class="livro-body">
+                        <div class="livro-top">
+                            <span class="livro-tag">Livro</span>
+                        </div>
+                        <h3 class="livro-titulo">@livro.Titulo</h3>
+                        <div class="livro-divider"></div>
+                        <div class="livro-autor-bloco">
+                            <span class="livro-autor-label">por</span>
+                            <span class="livro-autor-nome">@livro.Autor</span>
                         </div>
                     </div>
-                </div>
+                </article>
             }
         }
         else
         {
-            <p class="text-center w-100">Nenhum livro encontrado no momento.</p>
+            <div class="catalog-empty">
+                <p>Nenhum livro encontrado no momento.</p>
+            </div>
         }
     </div>
-</div>
+</main>
+
+<style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        background: #f7f3ee;
+        color: #1c1612;
+        font-family: 'Georgia', 'Times New Roman', serif;
+    }
+
+    /* ── Hero ── */
+    .hero {
+        position: relative;
+        background: #1a2e40;
+        padding: 72px 40px 64px;
+        overflow: hidden;
+    }
+
+    .hero-texture {
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(circle at 15% 85%, rgba(0, 85, 255, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 85% 20%, rgba(0, 85, 255, 0.1) 0%, transparent 45%);
+        pointer-events: none;
+    }
+
+    .hero-content {
+        position: relative;
+        max-width: 660px;
+        margin: 0 auto;
+        text-align: center;
+        z-index: 1;
+    }
+
+    .hero-label {
+        display: inline-block;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #8cb3ff; /* Azul elétrico suavizado para melhor contraste no fundo escuro */
+        margin-bottom: 20px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+        font-weight: 700;
+        line-height: 1.25;
+        color: #f5f0e8;
+        margin: 0 0 16px;
+        letter-spacing: -0.01em;
+    }
+
+    .hero-desc {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 1rem;
+        color: #8da4b8;
+        margin: 0 0 36px;
+    }
+
+    /* Busca dentro do hero */
+    .hero-search {
+        display: flex;
+        background: #f7f3ee;
+        border-radius: 10px;
+        overflow: hidden;
+        max-width: 520px;
+        margin: 0 auto;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+
+    .hero-input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 14px 20px;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 0.95rem;
+        color: #1c1612;
+    }
+
+    .hero-input::placeholder { color: #a09080; }
+
+    .hero-btn {
+        background: #0055ff; /* Botão principal em Azul Elétrico */
+        color: #ffffff;
+        border: none;
+        padding: 14px 26px;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 0.92rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s;
+        white-space: nowrap;
+        letter-spacing: 0.02em;
+    }
+
+    .hero-btn:hover { background: #0044cc; }
+
+    /* ── Catálogo ── */
+    .catalog {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 52px 24px 72px;
+    }
+
+    .catalog-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        border-bottom: 2px solid #1a2e40;
+        padding-bottom: 14px;
+    }
+
+    .catalog-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1a2e40;
+        margin: 0;
+        letter-spacing: -0.02em;
+    }
+
+    .catalog-count {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 0.82rem;
+        color: #8a7a6a;
+    }
+
+    .catalog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    /* ── Card de livro ── */
+    .livro {
+        display: flex;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(28, 22, 18, 0.07);
+        border: 1px solid #e8e0d4;
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        min-height: 160px;
+    }
+
+    .livro:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 32px rgba(0, 85, 255, 0.08); /* Sombra sutil com a nova cor no hover */
+    }
+
+    /* Lombada do card com o degradê do Azul Elétrico */
+    .livro-spine {
+        width: 8px;
+        flex-shrink: 0;
+        background: linear-gradient(180deg, #0055ff, #1a2e40); 
+    }
+
+    .livro-body {
+        flex: 1;
+        padding: 22px 22px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .livro-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .livro-tag {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #0055ff; /* Tag em Azul Elétrico */
+        background: rgba(0, 85, 255, 0.07); /* Fundo sutil */
+        padding: 3px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 85, 255, 0.15);
+    }
+
+    .livro-titulo {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #0055ff; /* Aplicado o Azul Elétrico idêntico ao da imagem */
+        margin: 0;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+    }
+
+    .livro-divider {
+        height: 1px;
+        background: #ede8e0;
+        margin: 2px 0;
+    }
+
+    .livro-autor-bloco {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: auto;
+    }
+
+    .livro-autor-label {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 0.78rem;
+        color: #a09080;
+        font-style: italic;
+    }
+
+    .livro-autor-nome {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #1a2e40;
+        letter-spacing: 0.01em;
+    }
+
+    /* ── Empty ── */
+    .catalog-empty {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 60px 20px;
+        color: #a09080;
+        font-family: 'Segoe UI', sans-serif;
+    }
+</style>

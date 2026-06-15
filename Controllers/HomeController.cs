@@ -1,13 +1,20 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using sistemabiblioteca.Data;
 using sistemabiblioteca.Models;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace sistemabiblioteca.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly AppDbContext _context;
+
+    public HomeController(AppDbContext context)
+    {
+        _context = context;
+    }
+
     public IActionResult Index(string busca)
     {
         var meuslivros = new List<Livro>
@@ -23,57 +30,46 @@ public class HomeController : Controller
             new Livro { Id = 9, Titulo = "O Diário de Anne Frank", Autor = "Anne Frank" },
             new Livro { Id = 10, Titulo = "Pearl Harbor", Autor = "Craig Nelson" },
             new Livro { Id = 11, Titulo = "A Queda de Berlim 1945", Autor = "Antony Beevor" },
-            new Livro { Id = 11, Titulo = "Sobre a Guerra", Autor = "Carl von Clausewitz" },
-            new Livro { Id = 12, Titulo = "Os Canhões de Agosto", Autor = "Barbara W. Tuchman" },
-            new Livro { Id = 13, Titulo = "O Longo Caminho para Casa", Autor = "Ernest Hemingway" },
-            new Livro { Id = 14, Titulo = "A Grande Guerra", Autor = "Marc Ferro" },
-            new Livro { Id = 15, Titulo = "A Guerra do Peloponeso", Autor = "Tucídides" },
+            new Livro { Id = 12, Titulo = "Sobre a Guerra", Autor = "Carl von Clausewitz" },
+            new Livro { Id = 13, Titulo = "Os Canhões de Agosto", Autor = "Barbara W. Tuchman" },
+            new Livro { Id = 14, Titulo = "O Longo Caminho para Casa", Autor = "Ernest Hemingway" },
+            new Livro { Id = 15, Titulo = "A Grande Guerra", Autor = "Marc Ferro" },
+            new Livro { Id = 16, Titulo = "A Guerra do Peloponeso", Autor = "Tucídides" },
         };
 
         if (!string.IsNullOrEmpty(busca))
         {
             meuslivros = meuslivros
-                .Where(l => l.Titulo.Contains(busca, System.StringComparison.OrdinalIgnoreCase) ||
-                            l.Autor.Contains(busca, System.StringComparison.OrdinalIgnoreCase))
+                .Where(l => l.Titulo.Contains(busca, StringComparison.OrdinalIgnoreCase) ||
+                            l.Autor.Contains(busca, StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }
 
         return View(meuslivros);
     }
 
-    public IActionResult Privacy()
+    public IActionResult Privacy() => View();
+
+    public IActionResult Sobre() => View();
+
+    public async Task<IActionResult> Produtos(string busca)
     {
-        return View();
+        var produtos = await _context.Produtos
+            .Where(p => string.IsNullOrEmpty(busca) ||
+                        p.Nome.Contains(busca) ||
+                        p.Descricao.Contains(busca))
+            .ToListAsync();
+
+        return View(produtos);
     }
 
-    public IActionResult Sobre()
-    {
-        return View();
-    }
-
-    public IActionResult Produtos(string busca)
-    {
-
-        var listaParaVenda = AdminController._produtos;
-
-        if (!string.IsNullOrEmpty(busca))
-        {
-            listaParaVenda = listaParaVenda.Where(p => p.Nome.Contains(busca, StringComparison.OrdinalIgnoreCase) || p.Descricao.Contains(busca, StringComparison.OrdinalIgnoreCase)).ToList();
-        }
-        return View(listaParaVenda);
-    }
-
-    public IActionResult Contato()
-    {
-        return View();
-    }
+    public IActionResult Contato() => View();
 
     [HttpPost]
     public IActionResult Contato(ContatoViewModel model)
     {
         if (ModelState.IsValid)
         {
-
             TempData["MensagemSucesso"] = "Obrigado! Sua mensagem foi enviada com sucesso e em breve entraremos em contato.";
             return RedirectToAction("Contato");
         }

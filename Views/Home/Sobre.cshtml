@@ -2,40 +2,107 @@
     ViewData["Title"] = "Sobre Nós";
 }
 
-<div class="container mt-5">
+<!-- Link para os ícones do Bootstrap (caso ainda não tenha no seu _Layout.cshtml) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card shadow-sm border-0">
-                <div class="card-header text-white text-center py-3" style="background-color: #0055ff;">
-                    <h2 class="mb-0">Sobre a Nossa Biblioteca</h2>
+        <div class="col-md-11">
+            
+            <!-- Banner Principal / Introdução -->
+            <div class="card shadow-sm border-0 mb-4 overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-lg-12 text-white text-center py-5 px-4" style="background: linear-gradient(135deg, #0055ff, #0033aa);">
+                        <i class="bi bi-book-half display-3 mb-3"></i>
+                        <h1 class="fw-bold mb-2">Sobre a Nossa Biblioteca</h1>
+                        <p class="lead mb-0 opacity-75">Portal para um universo de informações, cultura e histórias.</p>
+                    </div>
                 </div>
-                <div class="card-body p-4">
-                    <p class="lead">
-                        Bem-vindo à Biblioteca do Conhecimento, seu portal para um universo de informações e histórias.
-                        Fundada em 2023, nossa missão é democratizar o acesso à leitura e ao aprendizado,
-                        oferecendo um acervo diversificado que atende a todos os gostos e idades.
-                    </p>
-                    <p>
-                        Acreditamos no poder transformador dos livros e na importância de fomentar a cultura e a educação.
-                        Nosso espaço é um convite à descoberta, ao estudo e ao lazer, com ambientes acolhedores e recursos modernos.
-                    </p>
-                    <p>
-                        Explore nossas coleções, participe de nossos eventos e faça parte da nossa comunidade.
-                        Estamos sempre buscando inovar para oferecer a melhor experiência aos nossos usuários.
-                    </p>
-                    <h4 class="mt-4" style="color: #0055ff;">Nossa Visão</h4>
-                    <p>
-                        Ser reconhecida como um centro de excelência em cultura e educação, inspirando a paixão pelo conhecimento.
-                    </p>
-                    <h4 class="mt-4" style="color: #0055ff;">Nossos Valores</h4>
-                    <ul>
-                        <li>Acessibilidade</li>
-                        <li>Inovação</li>
-                        <li>Comunidade</li>
-                        <li>Respeito</li>
-                    </ul>
+                <div class="card-body p-4 p-md-5">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7">
+                            <h3 class="fw-bold mb-3" style="color: #0055ff;">Nossa História</h3>
+                            <p class="text-secondary fs-5 text-justify">
+                                Fundada em 2023, a <strong>Biblioteca do Conhecimento</strong> nasceu com a missão de democratizar o acesso à leitura e ao aprendizado. Acreditamos no poder transformador dos livros e na importância de fomentar a cultura e a educação em nossa comunidade.
+                            </p>
+                            <p class="text-secondary">
+                                Nosso espaço é um convite à descoberta, ao estudo e ao lazer. Contamos com ambientes acolhedores, recursos tecnológicos modernos e uma equipe pronta para guiar você nessa jornada pelo conhecimento.
+                            </p>
+                        </div>
+                        <div class="col-lg-5 text-center d-none d-lg-block">
+                            <!-- Ícone ilustrativo grande ou uma imagem real da biblioteca ficaria excelente aqui -->
+                            <i class="bi bi-journal-bookmark-fill text-light-emphasis" style="font-size: 10rem; opacity: 0.2;"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Seção de Conquistas / Indicadores (Gera engajamento e credibilidade) -->
+            <div class="row g-3 mb-4 text-center">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 text-dark bg-light">
+                        <i class="bi bi-bookshelf text-primary fs-1 mb-2"></i>
+                        <h2 class="fw-bold m-0">+15.000</h2>
+                        <span class="text-muted small text-uppercase fw-semibold">Livros no Acervo</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 text-dark bg-light">
+                        <i class="bi bi-people-fill text-primary fs-1 mb-2"></i>
+                        <h2 class="fw-bold m-0">+5.000</h2>
+                        <span class="text-muted small text-uppercase fw-semibold">Leitores Ativos</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4 text-dark bg-light">
+                        <i class="bi bi-calendar2-event text-primary fs-1 mb-2"></i>
+                        <h2 class="fw-bold m-0">50+</h2>
+                        <span class="text-muted small text-uppercase fw-semibold">Eventos Anuais</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Missão, Visão e Valores em Grid -->
+            <div class="row g-4 text-center">
+                <!-- Missão -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <div class="rounded-circle bg-primary bg-opacity-10 text-primary mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                            <i class="bi bi-rocket-takeoff fs-4"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Missão</h4>
+                        <p class="text-muted small mb-0">Democratizar o acesso à leitura e ao aprendizado de forma inovadora, oferecendo um acervo diversificado para todas as idades.</p>
+                    </div>
+                </div>
+                
+                <!-- Visão -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <div class="rounded-circle bg-primary bg-opacity-10 text-primary mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                            <i class="bi bi-eye fs-4"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Visão</h4>
+                        <p class="text-muted small mb-0">Ser reconhecida como um centro de excelência em cultura e educação, inspirando a paixão contínua pelo conhecimento.</p>
+                    </div>
+                </div>
+
+                <!-- Valores -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <div class="rounded-circle bg-primary bg-opacity-10 text-primary mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                            <i class="bi bi-heart fs-4"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Valores</h4>
+                        <ul class="list-unstyled text-muted small mb-0">
+                            <li><i class="bi bi-check2 text-primary me-1"></i> Acessibilidade</li>
+                            <li><i class="bi bi-check2 text-primary me-1"></i> Inovação Constante</li>
+                            <li><i class="bi bi-check2 text-primary me-1"></i> Foco na Comunidade</li>
+                            <li><i class="bi bi-check2 text-primary me-1"></i> Respeito à Diversidade</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

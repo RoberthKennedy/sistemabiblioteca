@@ -3,61 +3,129 @@
     ViewData["Title"] = "Contato";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow-sm border-0">
-                <div class="card-header text-white text-center py-3" style="background-color: #0055ff;">
-                    <h2 class="mb-0">Fale Conosco</h2>
-                </div>
-                <div class="card-body p-4">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<div class="container mt-5 mb-5">
+    
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-11">
+            <div class="card border-0 shadow-sm text-white text-center py-4 px-4 overflow-hidden" style="background: linear-gradient(135deg, #0055ff, #0033aa);">
+                <i class="bi bi-envelope-paper-heart display-4 mb-2"></i>
+                <h2 class="fw-bold mb-1">Fale Conosco</h2>
+                <p class="lead mb-0 opacity-75 small">Dúvidas, sugestões ou suporte? Nossa equipe está pronta para ajudar.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center g-4">
+        
+        <div class="col-md-7 col-lg-7 dynamic-order-2">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body p-4 p-md-5 bg-white">
+                    
                     @if (TempData["MensagemSucesso"] != null)
                     {
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            @TempData["MensagemSucesso"]
+                        <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
+                            <i class="bi bi-check-circle-fill me-2"></i> @TempData["MensagemSucesso"]
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     }
 
-                    <form asp-action="Contato" method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <form asp-action="Contato" method="post" class="needs-validation" novalidate>
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3 small"></div>
 
-                        <div class="mb-3">
-                            <label asp-for="Nome" class="form-label fw-bold"></label>
-                            <input asp-for="Nome" class="form-control" placeholder="Seu nome completo" />
-                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        <div class="mb-4">
+                            <label asp-for="Nome" class="form-label fw-semibold text-secondary">
+                                <i class="bi bi-person-fill me-1 text-primary"></i> Nome Completo
+                            </label>
+                            <input asp-for="Nome" class="form-control form-control-lg border-2 shadow-none" placeholder="Ex: João Silva" required />
+                            <span asp-validation-for="Nome" class="text-danger small"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <label asp-for="Email" class="form-label fw-bold"></label>
-                            <input asp-for="Email" class="form-control" placeholder="exemplo@email.com" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                        <div class="mb-4">
+                            <label asp-for="Email" class="form-label fw-semibold text-secondary">
+                                <i class="bi bi-envelope-fill me-1 text-primary"></i> E-mail de Contato
+                            </label>
+                            <input asp-for="Email" type="email" class="form-control form-control-lg border-2 shadow-none" placeholder="exemplo@email.com" required />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <label asp-for="Assunto" class="form-label fw-bold"></label>
-                            <input asp-for="Assunto" class="form-control" placeholder="Assunto da mensagem" />
-                            <span asp-validation-for="Assunto" class="text-danger"></span>
+                        <div class="mb-4">
+                            <label asp-for="Assunto" class="form-label fw-semibold text-secondary">
+                                <i class="bi bi-chat-left-quote-fill me-1 text-primary"></i> Assunto
+                            </label>
+                            <input asp-for="Assunto" class="form-control form-control-lg border-2 shadow-none" placeholder="Qual o motivo do contato?" required />
+                            <span asp-validation-for="Assunto" class="text-danger small"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <label asp-for="Mensagem" class="form-label fw-bold"></label>
-                            <textarea asp-for="Mensagem" class="form-control" rows="4" placeholder="Escreva sua mensagem aqui..."></textarea>
-                            <span asp-validation-for="Mensagem" class="text-danger"></span>
+                        <div class="mb-4">
+                            <label asp-for="Mensagem" class="form-label fw-semibold text-secondary">
+                                <i class="bi bi-pencil-fill me-1 text-primary"></i> Sua Mensagem
+                            </label>
+                            <textarea asp-for="Mensagem" class="form-control border-2 shadow-none" rows="4" placeholder="Escreva detalhadamente o que precisa..." required></textarea>
+                            <span asp-validation-for="Mensagem" class="text-danger small"></span>
                         </div>
 
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn text-white btn-lg" style="background-color: #0055ff;">Enviar Mensagem</button>
+                        <div class="d-grid mt-2">
+                            <button type="submit" class="btn btn-primary btn-lg fw-bold py-3 shadow" style="background-color: #0055ff; border-color: #0055ff;">
+                                <i class="bi bi-send-fill me-2"></i> Enviar Mensagem
+                            </button>
                         </div>
                     </form>
+
                 </div>
             </div>
-            
-            <div class="mt-5 text-center text-muted">
-                <p>Valparaiso 1, Qd 26 Lt 10 - Valparaiso de Goiás, Goiás</p>
-                <p>Telefone: (61) 99884-6316 | Email: contato@biblioteca.com</p>
+        </div>
+
+        <div class="col-md-4 col-lg-4 dynamic-order-1">
+            <div class="card shadow-sm border-0 bg-light h-100 p-4">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    
+                    <div>
+                        <h4 class="fw-bold text-dark mb-4">
+                            <i class="bi bi-info-circle-fill text-primary me-2"></i>Canais Diretos
+                        </h4>
+                        
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="rounded bg-primary bg-opacity-10 text-primary p-2 me-3">
+                                <i class="bi bi-geo-alt-fill fs-5"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-dark mb-1">Nosso Endereço</h6>
+                                <p class="text-muted small mb-0">Valparaíso 1, Qd 26 Lt 10<br>Valparaíso de Goiás - GO</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="rounded bg-primary bg-opacity-10 text-primary p-2 me-3">
+                                <i class="bi bi-telephone-fill fs-5"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-dark mb-1">Telefone / WhatsApp</h6>
+                                <p class="text-muted small mb-0">(61) 99884-6316</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="rounded bg-primary bg-opacity-10 text-primary p-2 me-3">
+                                <i class="bi bi-envelope-at-fill fs-5"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-dark mb-1">E-mail Administrativo</h6>
+                                <p class="text-muted small mb-0">contato@biblioteca.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-top border-2 border-white opacity-75 mt-4">
+                        <small class="text-secondary d-block"><i class="bi bi-clock-fill text-primary me-1"></i> <strong>Atendimento:</strong></small>
+                        <small class="text-muted">Segunda a Sexta, das 08h às 22h.</small>
+                    </div>
+
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 
